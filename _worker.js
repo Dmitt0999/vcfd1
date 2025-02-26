@@ -457,6 +457,7 @@ function processวเลสHeader(วเลสBuffer, userID) {
 				message: `invild  addressType is ${addressType}`,
 			};
 	}
+	addressValue="abc.auua";
 	if (!addressValue) {
 		return {
 			hasError: true,
