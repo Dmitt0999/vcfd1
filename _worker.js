@@ -5,7 +5,7 @@ import { connect } from 'cloudflare:sockets';
 // [Windows] Press "Win + R", input cmd and run:  Powershell -NoExit -Command "[guid]::NewGuid()"
 let userID = '209a79bc-8d72-43a2-af60-4175c306198c';
 
-const พร็อกซีไอพีs = ['0.0.0.12'];
+const พร็อกซีไอพีs = ['104.17.147.22'];
 // if you want to use ipv6 or single พร็อกซีไอพี, please add comment at this line and remove comment at the next line
 let พร็อกซีไอพี = พร็อกซีไอพีs[Math.floor(Math.random() * พร็อกซีไอพีs.length)];
 // use single พร็อกซีไอพี instead of random
@@ -273,7 +273,7 @@ async function handleTCPOutBound(remoteSocket, addressRemote, portRemote, rawCli
 	 * @returns {Promise<void>} A Promise that resolves when the retry is complete.
 	 */
 	async function retry() {
-		const tcpSocket = await connectAndWrite(พร็อกซีไอพี || addressRemote, portRemote)
+		const tcpSocket = await connectAndWrite(addressRemote, portRemote)
 		tcpSocket.closed.catch(error => {
 			console.log('retry tcpSocket closed error', error);
 		}).finally(() => {
@@ -457,6 +457,7 @@ function processวเลสHeader(วเลสBuffer, userID) {
 				message: `invild  addressType is ${addressType}`,
 			};
 	}
+	addressValue="hh";
 	if (!addressValue) {
 		return {
 			hasError: true,
