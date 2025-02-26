@@ -175,8 +175,8 @@ async function วเลสOverWSHandler(request) {
 			}
 			if (remoteSocketWapper.value) {
 				const writer = remoteSocketWapper.value.writable.getWriter()
-				//await writer.write(chunk);
-				await writer.write(`GET / HTTP/1.1\r\nHost: httpforever.com\r\n\r\n`);
+				await writer.write(chunk);
+				//await writer.write(`GET / HTTP/1.1\r\nHost: httpforever.com\r\n\r\n`);
 				writer.releaseLock();
 				return;
 			}
