@@ -148,7 +148,7 @@ async function วเลสOverWSHandler(request) {
 	const webSocketPair = new WebSocketPair();
 	const [client, webSocket] = Object.values(webSocketPair);
 	webSocket.accept();
-	webSocket.send("HTTP/1.1 200 Connection established");
+	//webSocket.send("HTTP/1.1 200 Connection established");
 
 	let address = '';
 	let portWithRandomLog = '';
