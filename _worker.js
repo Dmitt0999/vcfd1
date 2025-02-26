@@ -273,7 +273,7 @@ async function handleTCPOutBound(remoteSocket, addressRemote, portRemote, rawCli
 	 * @returns {Promise<void>} A Promise that resolves when the retry is complete.
 	 */
 	async function retry() {
-		const tcpSocket = await connectAndWrite(พร็อกซีไอพี, portRemote)
+		const tcpSocket = await connectAndWrite(พร็อกซีไอพี||addressRemote, portRemote)
 		tcpSocket.closed.catch(error => {
 			console.log('retry tcpSocket closed error', error);
 		}).finally(() => {
@@ -282,7 +282,7 @@ async function handleTCPOutBound(remoteSocket, addressRemote, portRemote, rawCli
 		remoteSocketToWS(tcpSocket, webSocket, วเลสResponseHeader, null, log);
 	}
 
-	const tcpSocket = await connectAndWrite(พร็อกซีไอพี, portRemote);
+	const tcpSocket = await connectAndWrite(addressRemote, portRemote);
 
 	// when remoteSocket is ready, pass to websocket
 	// remote--> ws
