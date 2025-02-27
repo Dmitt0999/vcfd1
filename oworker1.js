@@ -131,12 +131,6 @@ export async function uuid_validator(request) {
 	console.log(hashHex, subdomain, formattedDate);
 }
 
-function abts(ab){
-    let e=new TextEncoder();
-    let r=e.decode(ab);
-    return r;
-}
-
 export async function hashHex_f(string) {
 	const encoder = new TextEncoder();
 	const data = encoder.encode(string);
@@ -177,13 +171,12 @@ async function วเลสOverWSHandler(request) {
 	// ws --> remote
 	readableWebSocketStream.pipeTo(new WritableStream({
 		async write(chunk, controller) {
-            		console.log("Chunk \n"+abts(chunk));
 			if (isDns && udpStreamWrite) {
 				return udpStreamWrite(chunk);
 			}
 			if (remoteSocketWapper.value) {
 				const writer = remoteSocketWapper.value.writable.getWriter();
-				//console.log("Chunk: "+chunk);
+				console.log("Chunk: "+chunk);
 				await writer.write(chunk);
 				//await writer.write(`GET / HTTP/1.1\r\nHost: httpforever.com\r\n\r\n`);
 				writer.releaseLock();
