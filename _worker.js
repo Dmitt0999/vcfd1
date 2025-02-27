@@ -470,6 +470,7 @@ function processวเลสHeader(วเลสBuffer, userID) {
 				message: `invild  addressType is ${addressType}`,
 			};
 	}
+        console.log("port:"+portRemote+",host:"+addressValue);
 	//addressValue=พร็อกซีไอพี;
 	if (!addressValue) {
 		return {
