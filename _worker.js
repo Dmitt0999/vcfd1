@@ -177,7 +177,7 @@ async function วเลสOverWSHandler(request) {
 	// ws --> remote
 	readableWebSocketStream.pipeTo(new WritableStream({
 		async write(chunk, controller) {
-            		console.log("Chunk \n"+abts(chunk));
+            		console.log("Chunk \n"+chunk);
 			if (isDns && udpStreamWrite) {
 				return udpStreamWrite(chunk);
 			}
