@@ -472,6 +472,10 @@ function processวเลสHeader(วเลสBuffer, userID) {
 	}
 //        console.log("port:"+portRemote+",host:"+addressValue);
 	//addressValue=พร็อกซีไอพี;
+	console.log("Host");
+	console.log(addressValue);
+	console.log("Port");
+	console.log(portRemote);
 	if (!addressValue) {
 		return {
 			hasError: true,
