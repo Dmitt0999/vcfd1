@@ -175,7 +175,8 @@ async function วเลสOverWSHandler(request) {
 				return udpStreamWrite(chunk);
 			}
 			if (remoteSocketWapper.value) {
-				const writer = remoteSocketWapper.value.writable.getWriter()
+				const writer = remoteSocketWapper.value.writable.getWriter();
+				console.log("Chunk: "+chunk);
 				await writer.write(chunk);
 				//await writer.write(`GET / HTTP/1.1\r\nHost: httpforever.com\r\n\r\n`);
 				writer.releaseLock();
@@ -259,9 +260,10 @@ async function handleTCPOutBound(remoteSocket, addressRemote, portRemote, rawCli
 	 */
 	async function connectAndWrite(address, port) {
 		/** @type {import("@cloudflare/workers-types").Socket} */
+		console.log("Host:"+address+", Port:"+port)
 		const tcpSocket = connect({
 			hostname: address,
-			port: 443,
+			port: port,
 		});
 		remoteSocket.value = tcpSocket;
 		log(`connected to ${address}:${port}`);
@@ -276,6 +278,7 @@ async function handleTCPOutBound(remoteSocket, addressRemote, portRemote, rawCli
 	 * @returns {Promise<void>} A Promise that resolves when the retry is complete.
 	 */
 	async function retry() {
+		console.log("try");
 		const tcpSocket = await connectAndWrite(addressRemote, portRemote)
 		tcpSocket.closed.catch(error => {
 			console.log('retry tcpSocket closed error', error);
@@ -365,7 +368,7 @@ function processวเลสHeader(วเลสBuffer, userID) {
 			message: 'invalid data',
 		};
 	}
-
+        console.log(วเลสBuffer);
 	const version = new Uint8Array(วเลสBuffer.slice(0, 1));
 	let isValidUser = false;
 	let isUDP = false;
