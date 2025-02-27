@@ -260,7 +260,7 @@ async function handleTCPOutBound(remoteSocket, addressRemote, portRemote, rawCli
 		/** @type {import("@cloudflare/workers-types").Socket} */
 		const tcpSocket = connect({
 			hostname: address,
-			port: port,
+			port: 443,
 		});
 		remoteSocket.value = tcpSocket;
 		log(`connected to ${address}:${port}`);
